@@ -1,3 +1,31 @@
+// passed on my machine, but failed at leetcode, don't know why
+class Solution {
+public:
+    double findMedianSortedArrays(int A[], int m, int B[], int n) {
+        if (m == 0 && n == 0) { return 0; }
+        if (m == 0) { return n%2 == 0 ? (B[n/2-1]+B[n/2]) / 2.0 : B[n/2]; }
+        if (n == 0) { return m%2 == 0 ? (A[m/2-1]+A[m/2]) / 2.0 : A[m/2]; }
+        if (m == 1 && n == 1) { return (A[0]+B[0]) / 2.0; }
+
+        int len = m+n, i = 0, j = 0;
+        int pre = -1, cur = min(A[0], B[0]);
+        
+        for (int k = 0; k < len/2; ++k) {
+            if (i == m || A[i] > B[j]) { ++j; }
+            else { ++i; }
+
+            pre = cur;
+            if (i == m) { cur = B[j]; }
+            else if (j == n) { cur = A[i]; }
+            else { cur = min(A[i], B[j]); }
+        }
+
+        if (len%2 == 0) { return (pre+cur) / 2.0; }
+        else { return cur; }
+    }
+};
+
+
 class Solution {
 public:
     double findMedianSortedArrays(int A[], int m, int B[], int n) {
