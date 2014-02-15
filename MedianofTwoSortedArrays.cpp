@@ -59,9 +59,7 @@ public:
         else if (n == 1) { return (med+C[0]) / 2.0; }
         else if (n%2 == 0) {
             int left = C[n/2-1], right = C[n/2];
-            if (med <= left) { return left; }
-            else if (med >= right) { return right; }
-            else { return med; }
+            return min(max(med, left), right);
         } else {
             int left = C[n/2-1], mid = C[n/2], right = C[n/2+1];
             if (med <= left) { return (left+mid) / 2.0; }
@@ -74,19 +72,13 @@ public:
     double case2(int num1, int num2, int C[], int n) {
         if (n == 0) { return (num1+num2) / 2.0; }
         else if (n == 1) { 
-            if (num1 >= C[0]) { return num1; }
-            else if (num2 <= C[0]) { return num2; }
-            else { return C[0]; }
+            return min(max(num1, C[0]), num2);
         } else if (n == 2) {
-            int a = C[0], b = C[1];
-            
-            if (num2 <= b && num1 >= a) { return (num1+num2) / 2.0; }
-            else if (num1 <= a && num2 >= b) { return (a+b) / 2.0; }
-            else if (num2 <= b) { return (num2+a) / 2.0; }
-            else { return (num1+b) / 2.0; }
+            return (max(C[0], num1) + min(C[1], num2)) / 2.0;
+
         } else if (n == 3) {
             int a = C[0], b = C[1], c = C[2];
-            
+                        
             if (num2 <= a) { return a; }
             else if (num1 >= c) { return c; }
             else if (num2 <= b) { return num2; }
