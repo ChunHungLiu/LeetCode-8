@@ -53,7 +53,7 @@ public:
     }
 };
 
-//  one pass
+// one pass
 // http://en.wikipedia.org/wiki/Dutch_national_flag_problem
 class Solution {
 public:
