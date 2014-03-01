@@ -9,7 +9,7 @@ public:
         if (i < 0) { return false; }
         
         int j = num.size()-1;
-        while (j > i && num[j] < num[i]) {--j; }
+        while (j > i && num[j] < num[i]) { --j; }
         
         swap(num[i], num[j]);
         reverse(num.begin()+i+1, num.end());

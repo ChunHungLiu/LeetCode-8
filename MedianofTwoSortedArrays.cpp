@@ -1,4 +1,3 @@
-// passed on my machine, but failed at leetcode, don't know why
 class Solution {
 public:
     double findMedianSortedArrays(int A[], int m, int B[], int n) {
@@ -11,7 +10,7 @@ public:
         int pre = -1, cur = min(A[0], B[0]);
         
         for (int k = 0; k < len/2; ++k) {
-            if (i == m || A[i] > B[j]) { ++j; }
+            if ( i == m || (j < n && A[i] > B[j]) ) { ++j; }
             else { ++i; }
 
             pre = cur;
